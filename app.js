@@ -12,6 +12,8 @@ let audioSTATUS = localStorage.getItem("audio") ?? "true";
 let audioPlay;
 let IMG;
 
+let updated = false;
+
 
 if (audioSTATUS == "true") {
     document.getElementById("audio").innerHTML = `<i class="fa-solid fa-volume-high"></i>`;
@@ -42,6 +44,7 @@ function getPrayerTimes() {
     let url = `https://onehadith.org/api/random?lan=al&country=XK&timestamp=${timestamp}`;
 
     fetch(url).then((response) => response.json()).then((data) => {
+
         let imsaku = data.timings.imsak;
         let sabahu = add30Minutes(imsaku);
         let dreka = data.timings.dhuhr;
@@ -67,6 +70,7 @@ function getPrayerTimes() {
 
 
         document.getElementById("timeout").innerText = getTimeLeft(kohet);
+        updated = true;
     });
 
 
@@ -200,7 +204,13 @@ function soundEffect(t1) {
             audioCounter = 0;
         });
 
-        let notify = new Notification(`Sapo ka hyrë ${t1}`, {
+        document.getElementById("effect").classList.add("prayer-time");
+
+        setTimeout(() => {
+            document.getElementById("effect").classList.remove("prayer-time");
+        }, 10000)
+
+        let notify = new Notification(`Sapo ka hyrë ${t1 ?? "koha për tu falur"}`, {
             body: "Namazi është obligim për besimtarët në kohë të caktuar. [4:103]",
             icon: IMG,
             requireInteraction: true,
@@ -223,28 +233,6 @@ function audioChange() {
     }
 }
 
-// function getCorrectTime(oldTime) {
-//     const [oldHours, oldMinutes] = oldTime.split(':').map(Number); // split the old time string into hours and minutes
-//     const now = new Date(); // get the current date and time
-//     const offsetInMs = now.getTimezoneOffset() * 60 * 1000; // get the offset in milliseconds
-//     const nowWithOffset = new Date(now.getTime() - offsetInMs); // apply the offset to get the UTC time
-//     const hours = nowWithOffset.getHours(); // get the current hour
-//     const minutes = nowWithOffset.getMinutes(); // get the current minute
-
-//     let newHours = oldHours + Math.floor((hours - oldHours) / 24) * 24; // calculate the new hours, taking into account DST changes
-//     if (hours < oldHours) { // if the current hour is less than the old hour, it means we have gone back in time due to DST
-//         newHours -= 1; // subtract 1 from the new hours to account for the hour that was repeated
-//     } else if (hours > oldHours) { // if the current hour is greater than the old hour, it means we have gone forward in time due to DST
-//         newHours += 1; // add 1 to the new hours to account for the hour that was skipped
-//     }
-
-//     // format the new hours and minutes
-//     const formattedHours = (newHours < 10) ? `0${newHours}` : newHours;
-//     const formattedMinutes = (minutes < 10) ? `0${minutes}` : minutes;
-
-//     // return the formatted time as a string
-//     return `${formattedHours}:${formattedMinutes}`;
-// }
 
 
 if (!("Notification" in window)) {
@@ -265,19 +253,28 @@ if (!("Notification" in window)) {
     });
 }
 
-
 function check() {
     setInterval(() => {
         document.getElementById("timeout").innerText = getTimeLeft(kohet);
     }, 1);
 }
 
-setTimeout(() => {
-    check();
-}, 2500);
+
+function checkStatus() {
+    if (updated == true) {
+        setTimeout(() => {
+            check();
+        }, 5);
+    }
+}
+
+
+
+
 
 setInterval(() => {
 
+    checkStatus();
     document.getElementById("time").innerText = getTime();
 
 }, 1);
