@@ -9,6 +9,10 @@ let formatedDate = date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.get
 let kohet = [];
 
 let audioSTATUS = localStorage.getItem("audio") ?? "true";
+let clockSTATUS = localStorage.getItem("clock") ?? "true";
+
+let clock = false;
+
 let audioPlay;
 let IMG;
 
@@ -22,6 +26,20 @@ if (audioSTATUS == "true") {
     document.getElementById("audio").innerHTML = '<i class="fa-solid fa-volume-xmark"></i>';
     audioPlay = false;
 
+}
+if (clockSTATUS == "true") {
+    document.getElementById("clock").innerHTML = `<i class="fa-solid fa-user-clock"></i>`;
+    clock = true;
+} else {
+    let m = new Date();
+    let month = m.getMonth() + 1;
+
+    if (month == 3) {
+        document.getElementById("clock").innerHTML = '<i class="fa-solid fa-user-plus"></i>';
+    } else {
+        document.getElementById("clock").innerHTML = '<i class="fa-solid fa-user-minus"></i>';
+    }
+    clock = false;
 }
 
 getPrayerTimes();
@@ -55,18 +73,34 @@ function getPrayerTimes() {
         kohet.push(sabahu);
         kohet.push(dreka);
         kohet.push(ikindia);
-        // kohet.push("21:08");
-        // kohet.push("21:09");
         kohet.push(akshami);
         kohet.push(jacia);
-        document.getElementById("imsaku").innerText = "Imsaku: " + imsaku;
-        document.getElementById("sabahu").innerText = "Sabahu: " + sabahu;
-        document.getElementById("dreka").innerText = "Dreka: " + dreka;
-        document.getElementById("ikindia").innerText = "Ikindia: " + ikindia;
-        document.getElementById("akshami").innerText = "Akshami: " + akshami;
-        document.getElementById("jacia").innerText = "Jacia: " + jacia;
 
         kohet = kohet.map(time => time + ":00");
+
+        let tt = new Date();
+
+        let month = tt.getMonth() + 1;
+
+        value = 0;
+
+        if (month == 3) {
+            value = 1;
+        } else if (month == 10) {
+            value = -1;
+        } else {
+            value = 0;
+        }
+
+        if (clock == false) {
+            kohet = updateTimes(kohet, value);
+        }
+        document.getElementById("imsaku").innerText = "Imsaku: " + kohet[0].removeSeconds();
+        document.getElementById("sabahu").innerText = "Sabahu: " + kohet[1].removeSeconds();
+        document.getElementById("dreka").innerText = "Dreka: " + kohet[2].removeSeconds();
+        document.getElementById("ikindia").innerText = "Ikindia: " + kohet[3].removeSeconds();
+        document.getElementById("akshami").innerText = "Akshami: " + kohet[4].removeSeconds();
+        document.getElementById("jacia").innerText = "Jacia: " + kohet[5].removeSeconds();
 
 
         document.getElementById("timeout").innerText = getTimeLeft(kohet);
@@ -75,6 +109,18 @@ function getPrayerTimes() {
 
 
 
+}
+
+function updateTimes(times, delta = 1) {
+    if (delta == 0) {
+        return times;
+    }
+    return times.map(time => {
+        const [hour, minute, second] = time.split(":").map(parseFloat);
+        const date = new Date(0, 0, 0, hour, minute, second);
+        date.setHours(date.getHours() + delta);
+        return date.toTimeString().slice(0, 8);
+    });
 }
 
 function getTime() {
@@ -233,6 +279,23 @@ function audioChange() {
     }
 }
 
+function clockChange() {
+    if (clockSTATUS == "true") {
+        localStorage.setItem("clock", "false");
+        clockSTATUS = localStorage.getItem("clock")
+        document.getElementById("clock").innerHTML = '<i class="fa-solid fa-user-plus"></i>';
+        location.reload();
+    } else {
+        document.getElementById("clock").innerHTML = '<i class="fa-solid fa-user-clock"></i>';
+        localStorage.setItem("clock", "true");
+        clockSTATUS = localStorage.getItem("clock");
+        location.reload();
+    }
+}
+
+String.prototype.removeSeconds = function () {
+    return this.slice(0, -3);
+};
 
 
 if (!("Notification" in window)) {
