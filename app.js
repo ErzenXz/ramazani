@@ -236,14 +236,15 @@ function add30Minutes(time) {
 
 let audioCounter = 0;
 
+
 function soundEffect(t1) {
     audioCounter++;
     if (audioCounter > 1) {
         //
     } else if (audioCounter == 1) {
-        var audio = new Audio('audio.mp3');
         if (audioSTATUS) {
             audio.play();
+
         }
         audio.addEventListener('ended', function () {
             // code to be executed when audio has ended playing
