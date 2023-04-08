@@ -32,6 +32,9 @@ main {
     align-items: center;
     backdrop-filter: blur(1px);
     border-radius: 12px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-clip: border-box;
 }
 
 main>div {
