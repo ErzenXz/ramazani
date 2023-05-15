@@ -1,4 +1,8 @@
-let audioLink = "old.mp3";
+let audios = ["old.mp3", "audio2.mp3"];
+
+let r = Math.floor(Math.random() * audios.length);
+
+let audioLink = audios[r];
 
 var audio = new Audio(audioLink);
 audio.preload = 'auto';
