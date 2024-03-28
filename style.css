@@ -5,8 +5,10 @@
 }
 
 body {
-    background-color: #f0f2f5;
-    padding: 5px;
+    background-color: #10151d;
+    font-family: "Nunito Sans",
+        sans-serif;
+    line-height: 1.6;
 }
 
 .date {
@@ -15,23 +17,64 @@ body {
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    padding: 10px;
+    padding: 10px 50px;
     font-size: 48px;
     height: 18vh;
-    background-color: white;
-    border-radius: 12px;
-    border: 1px solid lightgrey;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.274);
+    backdrop-filter: blur(10px);
+    color: white;
+    font-weight: 600;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 10px 20px;
+    font-size: 48px;
+    height: 6vh;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+    bottom: 0 !important;
+    background-color: rgba(0, 0, 0, 0.274);
+    backdrop-filter: blur(10px);
+    color: white;
+}
+
+.btns {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 75px;
+}
+
+.location {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    font-size: 16px;
+}
+
+.location i {
+    margin-right: 10px;
 }
 
 main {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    height: 80vh;
+    height: 100vh;
     justify-content: space-between;
     align-items: center;
-    backdrop-filter: blur(1px);
-    border-radius: 12px;
     background-repeat: no-repeat;
     background-size: cover;
     background-clip: border-box;
@@ -42,10 +85,9 @@ main>div {
     width: 45%;
     height: 250px;
     z-index: 5;
-
 }
 
-#hadith {
+.hadith {
     background-size: cover;
     background-repeat: no-repeat;
     background-blend-mode: darken;
@@ -55,17 +97,68 @@ main>div {
     margin: auto;
     color: white;
     overflow-y: scroll;
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+    height: 100%;
+    min-height: 200px;
+    max-height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 50px 30px;
+    gap: 5px;
+    text-align: center;
+    font-size: 1.25vw;
 }
 
 .prayer {
-    font-size: 35px;
     text-shadow: 1px 1px 2px #000000;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     color: white;
+    margin: auto;
+    overflow-y: scroll;
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+    width: 30%;
+    height: 100%;
+    min-height: 200px;
+    max-height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    /* padding: 50px 10px; */
+    gap: 10px;
+    text-align: center;
+    overflow: auto;
+    font-size: 1.5vw;
 }
+
+.transmetuesi {
+    font-style: italic;
+    color: #cbd5e1;
+}
+
+strong {
+    color: #e2e8f0;
+}
+
+.nga {
+    position: relative;
+
+    width: 100%;
+    text-align: center;
+    font-size: 1vw;
+    color: #cbd5e1;
+}
+
 
 .overlay {
     position: absolute;
@@ -74,14 +167,13 @@ main>div {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.4);
-    /* Change the alpha value to adjust the darkness */
     border-radius: 12px;
-
+    backdrop-filter: blur(2px);
 }
 
 .audio,
 .clock {
-    font-size: 18px;
+    font-size: 16px;
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0ms;
 }
@@ -95,7 +187,7 @@ main>div {
 ::-webkit-scrollbar {
     width: 10px;
     border-radius: 20px;
-    box-shadow: 0px 0px 20px -15px;
+    background-color: rgba(0, 0, 0, 0.2);
 }
 
 /* Track */
@@ -106,35 +198,16 @@ main>div {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background: #b5b5b7;
+    background: linear-gradient(45deg, rgba(255, 255, 255, 0.8), rgba(0, 0, 0, 0.2));
     border-radius: 20px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-    background: #818282;
+    background: linear-gradient(45deg, rgba(255, 255, 255, 1), rgba(0, 0, 0, 0.4));
     border-radius: 20px;
 }
 
-@media only screen and (max-width: 600px) {
-    .date {
-        font-size: 32px;
-    }
-
-    #hadith {
-        font-size: 18px;
-    }
-
-    .prayer {
-        font-size: 20px;
-    }
-
-    .audio,
-    .clock {
-        font-size: 16px;
-    }
-
-}
 
 footer {
     position: fixed;
@@ -146,6 +219,8 @@ footer {
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
+    z-index: 1001;
+    margin-bottom: -5px;
 }
 
 a {
@@ -175,4 +250,123 @@ a:hover {
     100% {
         opacity: 1;
     }
+}
+
+@media screen and (max-width: 768px) {
+
+    .date {
+        font-size: 24px;
+        height: fit-content;
+    }
+
+    .buttons {
+        font-size: 24px;
+        height: fit-content;
+    }
+
+    main {
+        flex-direction: column;
+    }
+
+    #hadith {
+        width: 90%;
+        font-size: 14px;
+        display: none;
+    }
+
+    .prayer {
+        order: -1;
+        font-size: 20px;
+        justify-content: default;
+        width: 90%;
+        padding-top: 50px;
+    }
+
+    footer {
+        display: none;
+    }
+
+}
+
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+}
+
+.modal-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+    min-width: 320px;
+    max-width: 480px;
+    border-radius: 0.5rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    z-index: 10000;
+    transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1) 0ms;
+    animation: popupFadeIn 0.357s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.modal-header {
+    padding: 1.5rem;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.modal-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.modal-content {
+    padding: 1.5rem;
+    max-height: 70vh;
+    overflow-y: auto;
+}
+
+.modal-footer {
+    padding: 1.5rem;
+    border-top: 1px solid #e2e8f0;
+    text-align: right;
+}
+
+.modal-footer button {
+    padding: 0.5rem 1rem;
+    background-color: #e2e8f0;
+    border-radius: 0.25rem;
+    transition: all 0.25s cubic-bezier(0.165, 0.84, 0.44, 1) 0ms;
+    border: none;
+    cursor: pointer;
+    height: 35px;
+}
+
+.modal-footer button:hover {
+    background-color: #cbd5e1;
+}
+
+
+/* Popup fade animation */
+
+@keyframes popupFadeIn {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.7);
+    }
+
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+::selection {
+    background-color: rgba(188, 210, 218, 0.548);
+    color: black;
 }

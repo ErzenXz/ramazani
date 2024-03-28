@@ -1,57 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <meta name="title" content="Takvimi - Kosovë - 2024" />
+      <meta
+         name="description"
+         content="Takvimi është një uebfaqe që shërben për tregimin e kohës së namazit në Kosovës."
+      />
+      <meta
+         name="keywords"
+         content="Takvimi, Takvimi 2024, Takvimi 2023, Takvimi 2022, Takvimi i fundit, Takvimi ne Kosove 2024, takvimi ne kosove, takvimi ne shqiperi, takvimi ne maqedoni, kur falet namazi, takvim, takvimi, kosove, shqiperi, maqedoni, kohe e faljes, takvim, takvimi-ks, takvimi falas"
+      />
+      <meta name="robots" content="index, follow" />
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="title" content="Takvimi - Kosovë - 2023">
-    <meta name="description" content="Takvimi është një uebfaqe që shërben për tregimin e kohës së namazit në Kosovës.">
-    <meta name="keywords"
-        content="Takvimi, takvimi ne kosove, takvimi ne shqiperi,kohe e faljes, takvim, takvimi-ks, takvimi falas">
-    <meta name="robots" content="index, follow">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+      <title>Takvimi - Kosovë</title>
 
-    <title>Takvimi - Kosovë</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="audio.js"></script>
-    <script defer src="app.js"></script>
-    <script src="https://kit.fontawesome.com/f45cd9c28c.js" crossorigin="anonymous" defer></script>
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+      <link
+         href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
+         rel="stylesheet"
+      />
 
+      <link rel="stylesheet" href="style.css" />
+      <script src="audio.js"></script>
+      <script defer src="app.js"></script>
+      <script
+         src="https://kit.fontawesome.com/f45cd9c28c.js"
+         crossorigin="anonymous"
+         defer
+      ></script>
+   </head>
 
-</head>
+   <body>
+      <div class="date" id="effect">
+         <div class="time" id="time"></div>
+         <div class="timeout" id="timeout"></div>
+      </div>
 
-<body>
+      <div class="buttons">
+         <div class="location">
+            <p id="country"><i class="fas fa-map-marker-alt"></i> Loading...</p>
+         </div>
+         <div class="btns">
+            <div class="audio" id="audio" onclick="audioChange()"></div>
+            <div class="clock" id="clock"></div>
+         </div>
+      </div>
 
-    <div class="date" id="effect">
-
-        <div class="time" id="time"></div>
-        <div class="audio" id="audio" onclick="audioChange()"></div>
-        <div class="clock" id="clock" onclick="clockChange()"></div>
-        <div class="timeout" id="timeout"></div>
-
-    </div>
-
-
-
-    <main id="main">
-        <div class="overlay"></div>
-        <div class="hadith" id="hadith"></div>
-        <div class="prayer">
+      <div class="overlay"></div>
+      <main id="main">
+         <div class="hadith" id="hadith"></div>
+         <div class="prayer">
             <div id="imsaku"></div>
             <div id="sabahu"></div>
             <div id="dreka"></div>
             <div id="ikindia"></div>
             <div id="akshami"></div>
             <div id="jacia"></div>
-        </div>
+         </div>
+      </main>
 
-    </main>
-
-    <footer>
-        <pre><a href="https://erzen.tk" target="_blank">ErzenK</a>           All rights reserved         2023©</pre>
-    </footer>
-
-</body>
-
+      <footer>
+         <pre><a href="https://erzen.tk" target="_blank">Erzen Krasniqi</a>           All rights reserved         2024©</pre>
+      </footer>
+   </body>
 </html>
